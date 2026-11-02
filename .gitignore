@@ -1,6 +1,10 @@
 # 実データ・社内資料（公開しない）
 private/
 *.xlsx
+src/data/*.local.json
+
+# Pythonのキャッシュ
+__pycache__/
 
 # Logs
 logs
