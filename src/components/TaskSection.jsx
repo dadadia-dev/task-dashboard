@@ -52,7 +52,7 @@ function TaskSection({ workId, tasks, setTasks }) {
     <section className="panel">
       <h3>タスク {openCount > 0 && <span className="count">{openCount}</span>}</h3>
 
-      <form className="task-form" onSubmit={addTask}>
+      <form className="item-form" onSubmit={addTask}>
         <input
           type="text"
           placeholder="タスクを入力"
@@ -66,12 +66,12 @@ function TaskSection({ workId, tasks, setTasks }) {
       {myTasks.length === 0 ? (
         <p className="panel-note">まだタスクはありません</p>
       ) : (
-        <ul className="task-list">
+        <ul className="item-list">
           {myTasks.map((t) => (
             <li key={t.id} className={t.done ? 'is-done' : ''}>
               <label>
                 <input type="checkbox" checked={t.done} onChange={() => toggleDone(t.id)} />
-                <span className="task-title">{t.title}</span>
+                <span className="item-title">{t.title}</span>
               </label>
               {t.due && (
                 <span className={!t.done && t.due < today() ? 'task-due is-overdue' : 'task-due'}>

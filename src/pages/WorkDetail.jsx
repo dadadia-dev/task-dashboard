@@ -1,11 +1,15 @@
 import { Link, useParams } from 'react-router'
 import { works } from '../data/loadWorks'
 import TaskSection from '../components/TaskSection'
+import ImprovementSection from '../components/ImprovementSection'
+import NoteSection from '../components/NoteSection'
+import LinkSection from '../components/LinkSection'
 
 const OWNERSHIP_LABELS = { A: '自分しかできない', B: '教えれば引継ぎ可', C: '誰でもできる' }
 
 // 業務の詳細ページ。URLの /work/:id の id で、どの業務かを決める
-function WorkDetail({ tasks, setTasks }) {
+// store には、App が持っている全データ（タスク・改善・メモ・リンク）と更新用の関数が入っている
+function WorkDetail({ store }) {
   const { id } = useParams()
   const work = works.find((w) => w.id === id)
 
@@ -55,21 +59,15 @@ function WorkDetail({ tasks, setTasks }) {
         </div>
       </dl>
 
-      {/* 改善・手順メモ・リンクは 4-4 で作る */}
       <div className="work-sections">
-        <TaskSection workId={work.id} tasks={tasks} setTasks={setTasks} />
-        <section className="panel">
-          <h3>改善</h3>
-          <p className="panel-note">4-4で作ります</p>
-        </section>
-        <section className="panel">
-          <h3>手順・メモ</h3>
-          <p className="panel-note">4-4で作ります</p>
-        </section>
-        <section className="panel">
-          <h3>リンク</h3>
-          <p className="panel-note">4-4で作ります</p>
-        </section>
+        <TaskSection workId={work.id} tasks={store.tasks} setTasks={store.setTasks} />
+        <ImprovementSection
+          workId={work.id}
+          improvements={store.improvements}
+          setImprovements={store.setImprovements}
+        />
+        <NoteSection workId={work.id} notes={store.notes} setNotes={store.setNotes} />
+        <LinkSection workId={work.id} links={store.links} setLinks={store.setLinks} />
       </div>
     </>
   )
