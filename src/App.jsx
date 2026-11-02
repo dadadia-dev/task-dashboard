@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { tasks, isSample } from './data/loadTasks'
-import CategoryChart from './components/CategoryChart'
 import MatrixChart from './components/MatrixChart'
 import TaskTable from './components/TaskTable'
 import './App.css'
@@ -11,13 +10,9 @@ function App() {
   // マトリクスで選んだマス（{ automation, ownership }）。未選択なら null
   const [selected, setSelected] = useState(null)
 
-  // 月間時間の多い順に並べる（元の配列は変えずにコピーを並べ替える）
-  const sortedTasks = [...tasks].sort((a, b) => b.monthlyHours - a.monthlyHours)
-  const totalHours = tasks.reduce((sum, task) => sum + task.monthlyHours, 0)
-
   const visibleTasks = selected
-    ? sortedTasks.filter((t) => t.automation === selected.automation && t.ownership === selected.ownership)
-    : sortedTasks
+    ? tasks.filter((t) => t.automation === selected.automation && t.ownership === selected.ownership)
+    : tasks
 
   return (
     <main className="app">
@@ -33,14 +28,9 @@ function App() {
           <span className="summary-label">業務数</span>
           <span className="summary-value">{tasks.length}件</span>
         </div>
-        <div>
-          <span className="summary-label">月間合計</span>
-          <span className="summary-value">{totalHours.toFixed(1)}h</span>
-        </div>
       </section>
 
       <section className="panels">
-        <CategoryChart tasks={tasks} />
         <MatrixChart tasks={tasks} selected={selected} onSelect={setSelected} />
       </section>
 

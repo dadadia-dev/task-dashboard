@@ -9,7 +9,6 @@ function TaskTable({ tasks }) {
             <th>大分類</th>
             <th>業務名</th>
             <th>対象</th>
-            <th className="num">月間(h)</th>
             <th>属人度</th>
             <th>自動化余地</th>
           </tr>
@@ -21,7 +20,6 @@ function TaskTable({ tasks }) {
               <td>{task.category}</td>
               <td>{task.name}</td>
               <td>{task.target}</td>
-              <td className="num">{task.monthlyHours}</td>
               <td>{task.ownership}</td>
               <td>{task.automation}</td>
             </tr>
