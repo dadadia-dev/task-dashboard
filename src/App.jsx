@@ -1,11 +1,15 @@
 import { Link, Route, Routes } from 'react-router'
 import { isSample } from './data/loadWorks'
+import useLocalStorage from './hooks/useLocalStorage'
 import Home from './pages/Home'
 import WorkDetail from './pages/WorkDetail'
 import './App.css'
 
 // 全画面共通の枠（見出し）と、URLごとの画面の切り替え
 function App() {
+  // 全業務のタスク。ホーム（4-5で件数表示）と詳細ページの両方で使うので、共通の親の App が持つ
+  const [tasks, setTasks] = useLocalStorage('tasks', [])
+
   return (
     <main className="app">
       <header className="app-header">
@@ -19,7 +23,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/work/:id" element={<WorkDetail />} />
+        <Route path="/work/:id" element={<WorkDetail tasks={tasks} setTasks={setTasks} />} />
         <Route
           path="*"
           element={

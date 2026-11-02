@@ -1,10 +1,11 @@
 import { Link, useParams } from 'react-router'
 import { works } from '../data/loadWorks'
+import TaskSection from '../components/TaskSection'
 
 const OWNERSHIP_LABELS = { A: '自分しかできない', B: '教えれば引継ぎ可', C: '誰でもできる' }
 
 // 業務の詳細ページ。URLの /work/:id の id で、どの業務かを決める
-function WorkDetail() {
+function WorkDetail({ tasks, setTasks }) {
   const { id } = useParams()
   const work = works.find((w) => w.id === id)
 
@@ -54,12 +55,9 @@ function WorkDetail() {
         </div>
       </dl>
 
-      {/* 4-3 以降で、この4つの欄を作っていく */}
+      {/* 改善・手順メモ・リンクは 4-4 で作る */}
       <div className="work-sections">
-        <section className="panel">
-          <h3>タスク</h3>
-          <p className="panel-note">4-3で作ります</p>
-        </section>
+        <TaskSection workId={work.id} tasks={tasks} setTasks={setTasks} />
         <section className="panel">
           <h3>改善</h3>
           <p className="panel-note">4-4で作ります</p>
