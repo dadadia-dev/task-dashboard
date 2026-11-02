@@ -2,6 +2,12 @@
   padding: 32px 24px;
 }
 
+@media (max-width: 600px) {
+  .app {
+    padding: 20px 16px;
+  }
+}
+
 .app-header {
   display: flex;
   align-items: center;
@@ -44,8 +50,152 @@
   color: var(--text-h);
 }
 
+/* グラフ・マトリクスの枠 */
+.panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.panel {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  min-width: 0;
+}
+
+.panel-note {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+/* 横棒グラフ（Recharts は SVG なので fill で色を付ける） */
+.chart-bar path {
+  fill: var(--series-1);
+}
+
+.chart-tick {
+  fill: var(--text);
+  font-size: 13px;
+}
+
+.chart-label {
+  fill: var(--text-h);
+  font-size: 12px;
+}
+
+.chart-cursor {
+  fill: var(--border);
+  opacity: 0.5;
+}
+
+.chart-tooltip .recharts-default-tooltip {
+  background: var(--bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-h);
+}
+
+/* マトリクス：見出し列＋3列 */
+.matrix {
+  display: grid;
+  grid-template-columns: auto repeat(3, 1fr);
+  gap: 4px;
+}
+
+.matrix-row {
+  display: contents;
+}
+
+.matrix-col-label,
+.matrix-row-label {
+  font-size: 13px;
+  align-self: center;
+}
+
+.matrix-col-label {
+  text-align: center;
+}
+
+.matrix-row-label {
+  padding-right: 8px;
+}
+
+.matrix-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  font: inherit;
+  cursor: pointer;
+  background: var(--heat-0);
+  color: var(--text-h);
+}
+
+.matrix-cell:hover {
+  border-color: var(--border);
+}
+
+.matrix-cell.is-selected {
+  border-color: var(--text-h);
+}
+
+.matrix-count {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.matrix-hours {
+  font-size: 13px;
+}
+
+/* 色の濃さ（7段階）。濃いマスは文字を白に */
+.heat-1 { background: var(--heat-1); }
+.heat-2 { background: var(--heat-2); }
+.heat-3 { background: var(--heat-3); }
+.heat-4 { background: var(--heat-4); color: var(--heat-text-strong); }
+.heat-5 { background: var(--heat-5); color: var(--heat-text-strong); }
+.heat-6 { background: var(--heat-6); color: var(--heat-text-strong); }
+
+/* 一覧表 */
+.list-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.list-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.clear-button {
+  font: inherit;
+  font-size: 13px;
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* 狭い画面では表だけ横スクロール */
+.table-wrap {
+  overflow-x: auto;
+}
+
 .task-table {
   width: 100%;
+  min-width: 640px;
   border-collapse: collapse;
   font-size: 14px;
 }
@@ -64,4 +214,5 @@
 
 .task-table .num {
   text-align: right;
+  font-variant-numeric: tabular-nums;
 }

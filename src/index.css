@@ -6,6 +6,17 @@
   --accent: #aa3bff;
   --accent-bg: rgba(170, 59, 255, 0.1);
 
+  /* グラフの色（棒グラフ・マトリクスの濃淡） */
+  --series-1: #2a78d6;
+  --heat-0: #f4f3ef;
+  --heat-1: #cde2fb;
+  --heat-2: #9ec5f4;
+  --heat-3: #6da7ec;
+  --heat-4: #3987e5;
+  --heat-5: #256abf;
+  --heat-6: #184f95;
+  --heat-text-strong: #ffffff;
+
   --sans: system-ui, 'Segoe UI', 'Yu Gothic UI', 'Meiryo', sans-serif;
 
   font: 16px/150% var(--sans);
@@ -23,6 +34,17 @@
     --border: #2e303a;
     --accent: #c084fc;
     --accent-bg: rgba(192, 132, 252, 0.15);
+
+    /* 暗い背景では「少ない＝背景に近い暗い青、多い＝明るい青」 */
+    --series-1: #3987e5;
+    --heat-0: #23242b;
+    --heat-1: #0d366b;
+    --heat-2: #104281;
+    --heat-3: #1c5cab;
+    --heat-4: #3987e5;
+    --heat-5: #6da7ec;
+    --heat-6: #9ec5f4;
+    --heat-text-strong: #0b0b0b;
   }
 }
 
