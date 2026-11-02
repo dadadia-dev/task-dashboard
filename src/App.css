@@ -406,3 +406,59 @@ a:hover {
   color: #dc2626;
   margin: -6px 0 10px;
 }
+
+/* ホームの横断ビュー */
+.overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.overview h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0 0 8px;
+}
+
+.item-work {
+  display: block;
+  font-size: 12px;
+}
+
+.status-tag {
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+.status-tag.is-active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.summary-alert {
+  margin-left: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #dc2626;
+}
+
+.count-alt {
+  background: rgba(14, 165, 233, 0.12);
+  color: #0369a1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .count-alt {
+    color: #7dd3fc;
+  }
+}
+
+/* パネルの見出しの大きさをそろえる */
+.panel h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0 0 8px;
+}

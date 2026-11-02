@@ -1,18 +1,5 @@
 import { useState } from 'react'
-
-// 今日の日付を "2026-11-02" の形で返す（期限との比較用）
-function today() {
-  const d = new Date()
-  const pad = (n) => String(n).padStart(2, '0')
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
-}
-
-// 未完了を先に、その中は期限の近い順（期限なしは後ろ）
-function compareTasks(a, b) {
-  if (a.done !== b.done) return a.done ? 1 : -1
-  if (a.due !== b.due) return (a.due || '9999') < (b.due || '9999') ? -1 : 1
-  return a.createdAt < b.createdAt ? -1 : 1
-}
+import { compareTasks, formatDue, isOverdue } from '../utils/tasks'
 
 // 業務の詳細ページの「タスク」欄
 // tasks は全業務のタスク。この業務（workId）の分だけを表示・編集する
@@ -74,9 +61,7 @@ function TaskSection({ workId, tasks, setTasks }) {
                 <span className="item-title">{t.title}</span>
               </label>
               {t.due && (
-                <span className={!t.done && t.due < today() ? 'task-due is-overdue' : 'task-due'}>
-                  {t.due.slice(5).replace('-', '/')}
-                </span>
+                <span className={isOverdue(t) ? 'task-due is-overdue' : 'task-due'}>{formatDue(t.due)}</span>
               )}
               <button type="button" className="icon-button" onClick={() => deleteTask(t.id)} aria-label="削除">
                 ×

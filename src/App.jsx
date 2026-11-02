@@ -7,7 +7,7 @@ import './App.css'
 
 // 全画面共通の枠（見出し）と、URLごとの画面の切り替え
 function App() {
-  // 全業務のタスク・改善・メモ・リンク。ホーム（4-5で件数表示）と詳細ページの両方で使うので、共通の親の App が持つ
+  // 全業務のタスク・改善・メモ・リンク。ホームと詳細ページの両方で使うので、共通の親の App が持つ
   const [tasks, setTasks] = useLocalStorage('tasks', [])
   const [improvements, setImprovements] = useLocalStorage('improvements', [])
   const [notes, setNotes] = useLocalStorage('notes', {})
@@ -28,7 +28,7 @@ function App() {
       </header>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home store={store} />} />
         <Route path="/work/:id" element={<WorkDetail store={store} />} />
         <Route
           path="*"
