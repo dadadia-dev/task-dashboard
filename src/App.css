@@ -159,21 +159,96 @@
   overflow-x: auto;
 }
 
-.task-table {
+.work-table {
   width: 100%;
   min-width: 560px;
   border-collapse: collapse;
   font-size: 14px;
 }
 
-.task-table th,
-.task-table td {
+.work-table th,
+.work-table td {
   padding: 8px;
   border-bottom: 1px solid var(--border);
   text-align: left;
 }
 
-.task-table th {
+.work-table th {
   color: var(--text-h);
   font-weight: 500;
+}
+
+/* リンク */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.app-header h1 a {
+  color: inherit;
+}
+
+.app-header h1 a:hover {
+  text-decoration: none;
+}
+
+/* 業務の詳細ページ */
+.back-link {
+  display: inline-block;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.work-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 4px 0 8px;
+}
+
+.work-id {
+  font-size: 13px;
+}
+
+.work-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 20px 0 24px;
+}
+
+.work-info div {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.work-info dt {
+  font-size: 12px;
+}
+
+.work-info dd {
+  margin: 0;
+  color: var(--text-h);
+}
+
+.work-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 16px;
+}
+
+.work-sections h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0 0 8px;
+}
+
+.not-found {
+  margin: 32px 0;
 }

@@ -13,16 +13,16 @@ function heatLevel(count, maxCount) {
   return Math.max(1, Math.ceil((count / maxCount) * 6))
 }
 
-function MatrixChart({ tasks, selected, onSelect }) {
+function MatrixChart({ works, selected, onSelect }) {
   // 9マスそれぞれに入る業務を集める
   const cells = AUTOMATIONS.map((automation) =>
     OWNERSHIPS.map(({ value: ownership }) => ({
       automation,
       ownership,
-      tasks: tasks.filter((t) => t.automation === automation && t.ownership === ownership),
+      works: works.filter((w) => w.automation === automation && w.ownership === ownership),
     })),
   )
-  const maxCount = Math.max(...cells.flat().map((c) => c.tasks.length))
+  const maxCount = Math.max(...cells.flat().map((c) => c.works.length))
 
   return (
     <div className="panel">
@@ -43,11 +43,11 @@ function MatrixChart({ tasks, selected, onSelect }) {
                 <button
                   key={cell.ownership}
                   type="button"
-                  className={`matrix-cell heat-${heatLevel(cell.tasks.length, maxCount)}${isSelected ? ' is-selected' : ''}`}
-                  title={cell.tasks.map((t) => t.name).join('\n') || '該当なし'}
+                  className={`matrix-cell heat-${heatLevel(cell.works.length, maxCount)}${isSelected ? ' is-selected' : ''}`}
+                  title={cell.works.map((w) => w.name).join('\n') || '該当なし'}
                   onClick={() => onSelect(isSelected ? null : { automation: cell.automation, ownership: cell.ownership })}
                 >
-                  <span className="matrix-count">{cell.tasks.length}件</span>
+                  <span className="matrix-count">{cell.works.length}件</span>
                 </button>
               )
             })}
